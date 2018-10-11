@@ -8,11 +8,7 @@ modded class PlayerBase
         ref SurvivorBase sbKiller = killer;
         ref Man manKiller = killer;
 
-        Print("DEBUG: EEKilled id " + sbKilled.GetPlayerID());
-
         if (GetGame().IsServer()) {
-//            SKL = new SimpleKillLogger;
-
             if (manKiller.IsMan() && sbKiller.GetPlayerID() != sbKilled.GetPlayerID()) {
                 SKL.KillHandler(sbKiller.GetPlayerID());
             }
@@ -21,8 +17,7 @@ modded class PlayerBase
 
         if( GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_CLIENT ) {
             // @NOTE: this branch does not happen, EEKilled is called only on server
-            if( GetGame().GetPlayer() == this )
-            {
+            if ( GetGame().GetPlayer() == this ) {
                 super.EEKilled( killer );
             }
             if (GetHumanInventory().GetEntityInHands())
@@ -49,7 +44,8 @@ modded class PlayerBase
 
     override void OnConnect()
     {
-//        Debug.Log("Player connected:"+this.ToString(),"Connect");
+        Debug.Log("Player connected:"+this.ToString(),"Connect");
+
         ref SurvivorBase sb = this;
         sb.SetPlayerID(this.GetIdentity().GetPlainId());
         sb.SetPlayerFullName(this.GetIdentity().GetName());

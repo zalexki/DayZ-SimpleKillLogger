@@ -9,10 +9,8 @@ class SimpleKillLogger
         ref map<string, map<string, string>> data = new map<string, map<string, string>>();
 
         if ( FileExist(SKLDataFileLocation) ) {
-            Print( "SKL Data exists, loading!" );
             JsonFileLoader<map<string, map<string, string>>>.JsonLoadFile(SKLDataFileLocation, data);
         } else {
-            Print( "SKL Data doesn't exist, creating file!" );
             JsonFileLoader<map<string, map<string, string>>>.JsonSaveFile(SKLDataFileLocation, data);
         }
 
@@ -31,22 +29,16 @@ class SimpleKillLogger
     {
         skl_data = Load();
         ref map<string, string> player = new map<string, string>();
-        Print("SK: OnConnectHandler id "+ id);
-        Print("SKL OnConnectHandler name "+ name);
 
         player.Set("name", name);
         skl_data.Insert(id, player);
         Save(skl_data);
-
-        Print("SKL OnConnectHandler name "+ skl_data.Get(id).Get("name"));
-
     }
 
     void DeathHandler(string id)
     {
         skl_data = Load();
         ref map<string, string> player = new map<string, string>();
-        Print("DEBUG: SKL killed id "+ id);
 
         if (skl_data.Contains(id)) {
             player = skl_data.Get(id);
@@ -62,17 +54,13 @@ class SimpleKillLogger
         }
 
         skl_data.Insert(id, player);
-        Print("DEBUG: SKL death count "+ skl_data.Get(id).Get("death"));
-
         Save(skl_data);
     }
 
     void KillHandler(string id)
     {
         skl_data = Load();
-
         ref map<string, string> player = new map<string, string>();
-        Print("SKL killer id "+ id);
 
         if (skl_data.Contains(id)) {
             player = skl_data.Get(id);
@@ -88,8 +76,6 @@ class SimpleKillLogger
         }
 
         skl_data.Insert(id, player);
-        Print("SKL kill count "+ skl_data.Get(id).Get("kill"));
-
         Save(skl_data);
     }
 

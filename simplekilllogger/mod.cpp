@@ -15,26 +15,14 @@ class CfgMods
 	    extra = 0;
 	    type = "mod";
 
-	    dependencies[] = {"Game", "World", "Mission"};
+	    dependencies[] = {"World"};
 
 	    class defs
 	    {
-            class gameScriptModule
-            {
-                value = "";
-                files[] = {"zalexki/simplekilllogger/scripts/3_Game"};
-            };
-            
 	        class worldScriptModule
             {
                 value = "";
                 files[] = {"zalexki/simplekilllogger/scripts/4_World"};
-            };
-
-            class missionScriptModule
-            {
-                value = "";
-                files[] = {"zalexki/simplekilllogger/scripts/5_Mission"};
             };
         };
     };
